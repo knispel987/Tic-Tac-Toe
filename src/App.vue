@@ -53,7 +53,7 @@ const ResetGame = () => {
 </script>
 
 <template>
-  <main class="pt-8 text-center bg-gradient-to-r h-fit-screen from-cyan-500 to-blue-500">
+  <main class="pt-8 text-center bg-gradient-to-r h-screen from-cyan-500 to-blue-500">
     <h1 class="mb-8 text-3xl font-bold uppercase">Tic Tac Toe</h1>
 
     <h3 class="text-xl mb-4">Player {{ player }}'s turn</h3>
