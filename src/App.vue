@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed } from "vue";
+import Watermark from "./components/Watermark.vue";
 
 const player = ref("X");
 const board = ref([
@@ -53,7 +54,9 @@ const ResetGame = () => {
 </script>
 
 <template>
-  <main class="pt-8 text-center bg-gradient-to-r h-screen from-cyan-500 to-blue-500">
+  <main
+    class="pt-8 text-center h-screen bg-gradient-to-r from-cyan-500 via-violet-500 to-blue-500"
+  >
     <h1 class="mb-8 text-3xl font-bold uppercase">Tic Tac Toe</h1>
 
     <h3 class="text-xl mb-4">Player {{ player }}'s turn</h3>
@@ -64,7 +67,7 @@ const ResetGame = () => {
           v-for="(cell, y) in row"
           :key="y"
           @click="MakeMove(x, y)"
-          :class="`border-8 outline-double  w-24 h-24 hover:bg-gray-300 flex items-center justify-center text-4xl cursor-pointer ${
+          :class="`border-8 outline-double  w-24 h-24 hover:bg-indigo-500 flex items-center justify-center text-4xl cursor-pointer ${
             cell === 'X' ? 'text-red-800' : 'text-indigo-800'
           }`"
         >
@@ -82,5 +85,6 @@ const ResetGame = () => {
         Reset
       </button>
     </div>
+    <Watermark />
   </main>
 </template>
