@@ -8,7 +8,27 @@ const board = ref([
   ["", "", ""],
   ["", "", ""],
 ]);
-
+// Kode ini mendefinisikan sebuah fungsi yang disebut CalculateWinner yang mengambil
+// parameter bernama board,
+// yang diasumsikan sebagai sebuah array dari string yang mewakili keadaan saat ini
+// dari permainan tic-tac-toe.
+// Fungsi tersebut pertama-tama mendefinisikan sebuah konstanta yang disebut lines,
+// yang merupakan sebuah array dari array.
+// Setiap sub-array mewakili kombinasi pemenang dari kotak-kotak pada papan tic-tac-toe.
+//  Misalnya, sub-array pertama [0, 1, 2] mewakili baris atas dari papan,
+// dan sub-array terakhir [2, 4, 6] mewakili diagonal dari kanan atas ke kiri bawah.
+// Fungsi kemudian menggunakan loop for untuk mengiterasi setiap sub-array dalam array lines.
+//  Dalam loop, fungsi menggunakan pengambilan nilai untuk mengambil nilai dari sub-array saat
+// ini menjadi variabel a, b, dan c. Variabel ini mewakili indeks dari kotak-kotak pada papan
+// yang membentuk kombinasi pemenang saat ini.
+// Kemudian fungsi memeriksa apakah nilai dari board[a] benar dan jika sama dengan nilai
+// dari board[b] dan board[c]. Jika kedua kondisi benar, itu berarti bahwa kotak-kotak pada
+// indeks a, b, dan c semuanya ditempati oleh pemain yang sama dan pemain tersebut memenangkan
+//  permainan. Dalam hal ini, fungsi mengembalikan nilai dari pemain pemenang dari array board.
+// Jika loop selesai tanpa menemukan kombinasi pemenang, fungsi mengembalikan null yang berarti
+// permainan belum selesai atau seri.
+//  |    |    |
+// \/   \/   \/
 const CalculateWinner = (board) => {
   const lines = [
     [0, 1, 2],
@@ -85,6 +105,6 @@ const ResetGame = () => {
         Reset
       </button>
     </div>
-    <Watermark />
+    <!-- <Watermark /> -->
   </main>
 </template>
