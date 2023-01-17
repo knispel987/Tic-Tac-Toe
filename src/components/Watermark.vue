@@ -1,5 +1,5 @@
 <template>
-  <section class="p-5 cursor-default absolute">
+  <section class="p-5 cursor-default">
     <div class="bg-cyan-200 rounded-xl max-w-fit p-2 text-2xl shadow-2xl">
       <ul>
         Built With Vue 3 + Vite + TailwindCSS
@@ -11,7 +11,9 @@
           >
         </li>
         <li>
-          <a class="underline" href="github.com/knispel987/Tic-Tac-Toe"
+          <a
+            class="underline hover:underline-offset-[5px] cursor-pointer"
+            href="github.com/knispel987/Tic-Tac-Toe"
             >Source code <span class="italic font-bold">Game</span> ini</a
           >
         </li>

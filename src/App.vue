@@ -103,7 +103,7 @@ const ResetGame = () => {
 
       <p
         v-if="winner"
-        class="text-6xl mb-8"
+        class="text-6xl mb-4"
         :class="{ 'text-red-800': winner === 'X', 'text-indigo-800': winner === 'O' }"
       >
         '{{ winner }}' Wins!
