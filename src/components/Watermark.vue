@@ -10,6 +10,11 @@
             >Anak-MM-XII</span
           >
         </li>
+        <li>
+          <a class="underline" href="github.com/knispel987/Tic-Tac-Toe"
+            >Source code <span class="italic font-bold">Game</span> ini</a
+          >
+        </li>
       </ul>
     </div>
   </section>

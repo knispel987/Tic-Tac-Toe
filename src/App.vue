@@ -74,20 +74,16 @@ const ResetGame = () => {
 </script>
 
 <template>
-  <main
-    class="pt-8 text-center h-screen bg-gradient-to-r from-cyan-500 via-violet-500 to-blue-500"
-  >
+  <main class="pt-8 text-center h-screen bg-gradient-to-r from-cyan-500 to-blue-500">
     <h1 class="mb-8 text-3xl font-bold uppercase">Tic Tac Toe</h1>
 
-    <h3 class="text-xl mb-4">Player {{ player }}'s turn</h3>
-
     <div class="flex flex-col items-center mb-8">
-      <div v-for="(row, x) in board" :key="x" class="flex">
+      <div v-for="(row, x) in board" :key="x" class="grid grid-cols-3">
         <div
           v-for="(cell, y) in row"
           :key="y"
           @click="MakeMove(x, y)"
-          :class="`border-8 outline-double  w-24 h-24 hover:bg-indigo-500 flex items-center justify-center text-4xl cursor-pointer ${
+          :class="`border-2 outline-double w-24 h-24 hover:bg-indigo-500 flex items-center justify-center text-4xl cursor-pointer ${
             cell === 'X' ? 'text-red-800' : 'text-indigo-800'
           }`"
         >
@@ -97,7 +93,22 @@ const ResetGame = () => {
     </div>
 
     <div class="text-center">
-      <p v-if="winner" class="text-6xl font-bold mb-8">Player '{{ winner }}' wins!</p>
+      <p class="text-3xl mb-4" v-if="!winner">
+        Player
+        <span
+          :class="`text-6xl ${player === 'X' ? 'text-red-800' : 'text-indigo-800'}`"
+          >{{ player }}</span
+        >'s turn
+      </p>
+
+      <p
+        v-if="winner"
+        class="text-6xl mb-8"
+        :class="{ 'text-red-800': winner === 'X', 'text-indigo-800': winner === 'O' }"
+      >
+        '{{ winner }}' Wins!
+      </p>
+
       <button
         @click="ResetGame"
         class="px-4 py-2 bg-pink-500 rounded uppercase font-bold hover:bg-pink-600 duration-300"
@@ -105,6 +116,8 @@ const ResetGame = () => {
         Reset
       </button>
     </div>
-    <!-- <Watermark /> -->
+    <div v-if="winner">
+      <Watermark />
+    </div>
   </main>
 </template>
