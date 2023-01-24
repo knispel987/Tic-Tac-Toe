@@ -13,7 +13,7 @@
         <li>
           <a
             class="underline hover:underline-offset-[5px] cursor-pointer"
-            href="github.com/knispel987/Tic-Tac-Toe"
+            href="https://github.com/knispel987/Tic-Tac-Toe"
             >Source code <span class="italic font-bold">Game</span> ini</a
           >
         </li>
