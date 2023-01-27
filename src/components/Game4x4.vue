@@ -67,7 +67,7 @@ const ResetGame = () => {
   <section>
     <div class="mb-2">
       <RouterLink
-        class="px-4 py-2 bg-pink-500 rounded uppercase font-bold hover:bg-pink-600 duration-300"
+        class="px-4 py-2 bg-pink-500/20 rounded uppercase font-bold hover:bg-pink-600 duration-300"
         to="/"
         >Ganti Jadi 3x3
       </RouterLink>
@@ -80,7 +80,7 @@ const ResetGame = () => {
           v-for="(cell, y) in row"
           :key="y"
           @click="MakeMove(x, y)"
-          :class="`border-2 outline-double w-20 h-20 hover:bg-indigo-500 flex items-center justify-center text-4xl cursor-pointer ${
+          :class="`border-2 outline-double w-20 h-20 hover:bg-indigo-500/20 flex items-center justify-center text-4xl cursor-pointer ${
             cell === 'X' ? 'text-red-800' : 'text-blue-800'
           }`"
         >
@@ -91,11 +91,11 @@ const ResetGame = () => {
   </section>
   <div class="text-center">
     <p class="text-3xl mb-4" v-if="!winner">
-      Player
+      Pemain
       <span :class="`text-6xl ${player === 'X' ? 'text-red-800' : 'text-indigo-800'}`">{{
         player
-      }}</span
-      >'s turn
+      }}</span>
+      jalan
     </p>
 
     <p
@@ -103,14 +103,14 @@ const ResetGame = () => {
       class="text-6xl mb-4"
       :class="{ 'text-red-800': winner === 'X', 'text-indigo-800': winner === 'O' }"
     >
-      '{{ winner }}' <span class="text-gray-800 text-3xl">Wins!</span>
+      '{{ winner }}' <span class="text-gray-800 text-3xl">Menang!</span>
     </p>
 
     <button
       @click="ResetGame"
-      class="px-4 py-2 bg-pink-500 rounded uppercase font-bold hover:bg-pink-600 duration-300"
+      class="px-4 py-2 bg-pink-500/20 rounded uppercase font-bold hover:bg-pink-600 duration-300"
     >
-      Reset
+      Mulai lagi
     </button>
   </div>
   <Watermark v-if="winner" />
