@@ -1,6 +1,6 @@
 <template>
   <section class="p-5 cursor-default">
-    <div class="bg-cyan-200 rounded-xl max-w-fit p-2 text-2xl shadow-2xl">
+    <div class="bg-cyan-200 text-gray-800 rounded-xl max-w-fit p-2 text-2xl shadow-2xl">
       <ul>
         Built With Vue 3 + Vite + TailwindCSS
         <li>

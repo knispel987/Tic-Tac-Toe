@@ -72,16 +72,32 @@ const ResetGame = () => {
         >Ganti Jadi 3x3
       </RouterLink>
     </div>
-    <h1 class="mb-8 text-3xl font-bold uppercase">Tic Tac Toe</h1>
-
-    <div class="flex flex-col items-center mb-8">
-      <div v-for="(row, x) in board" :key="x" class="flex">
+    <div>
+      <h1
+        v-if="!winner"
+        class="mb-8 text-3xl font-bold uppercase bg-gradient-to-tr from-slate-400 via-orange-400 to-blue-500 text-transparent bg-clip-text"
+      >
+        Permainan masih berjalan
+      </h1>
+      <h1
+        v-if="winner"
+        class="mb-8 text-3xl font-bold uppercase bg-gradient-to-tr from-slate-400 to-blue-500 text-transparent bg-clip-text"
+      >
+        Permainan Selesai yang Menang : <br />
+        <span
+          :class="`text-6xl ${winner === 'X' ? 'text-red-400' : 'text-indigo-400'}`"
+          >{{ winner }}</span
+        >
+      </h1>
+    </div>
+    <div class="flex flex-col items-center mb-8 divide-y-4">
+      <div v-for="(row, x) in board" :key="x" class="grid grid-cols-4 divide-x-4">
         <div
           v-for="(cell, y) in row"
           :key="y"
           @click="MakeMove(x, y)"
-          :class="`border-2 outline-double w-20 h-20 hover:bg-indigo-500/20 flex items-center justify-center text-4xl cursor-pointer ${
-            cell === 'X' ? 'text-red-800' : 'text-blue-800'
+          :class="` shadow-xl w-20 h-20 hover:bg-indigo-500/20 flex items-center justify-center text-4xl cursor-pointer ${
+            cell === 'X' ? 'text-red-400' : 'text-blue-400'
           }`"
         >
           {{ cell === "X" ? "X" : cell === "O" ? "O" : "" }}
@@ -89,10 +105,11 @@ const ResetGame = () => {
       </div>
     </div>
   </section>
+
   <div class="text-center">
     <p class="text-3xl mb-4" v-if="!winner">
       Pemain
-      <span :class="`text-6xl ${player === 'X' ? 'text-red-800' : 'text-indigo-800'}`">{{
+      <span :class="`text-6xl ${player === 'X' ? 'text-red-400' : 'text-indigo-400'}`">{{
         player
       }}</span>
       jalan
@@ -101,9 +118,9 @@ const ResetGame = () => {
     <p
       v-if="winner"
       class="text-6xl mb-4"
-      :class="{ 'text-red-800': winner === 'X', 'text-indigo-800': winner === 'O' }"
+      :class="{ 'text-red-400': winner === 'X', 'text-indigo-400': winner === 'O' }"
     >
-      '{{ winner }}' <span class="text-gray-800 text-3xl">Menang!</span>
+      {{ winner }} <span class="text-gray-200 text-3xl">Menang!</span>
     </p>
 
     <button

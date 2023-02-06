@@ -63,48 +63,64 @@ const ResetGame = () => {
         >Ganti Jadi 4x4
       </RouterLink>
     </div>
-    <h1 class="mb-8 text-3xl font-bold uppercase">Tic Tac Toe</h1>
+    <div>
+      <h1
+        v-if="!winner"
+        class="mb-8 text-3xl font-bold uppercase bg-gradient-to-tr from-slate-400 via-orange-400 to-blue-500 text-transparent bg-clip-text"
+      >
+        Permainan masih berjalan
+      </h1>
+      <h1
+        v-if="winner"
+        class="mb-8 text-3xl font-bold uppercase bg-gradient-to-tr from-slate-400 to-blue-500 text-transparent bg-clip-text"
+      >
+        Permainan Selesai yang Menang : <br />
+        <span
+          :class="`text-6xl ${winner === 'X' ? 'text-red-400' : 'text-indigo-400'}`"
+          >{{ winner }}</span
+        >
+      </h1>
+    </div>
 
-    <div class="flex flex-col items-center mb-8">
-      <div v-for="(row, x) in board" :key="x" class="grid grid-cols-3">
+    <div class="flex flex-col items-center mb-8 divide-y-4">
+      <div v-for="(row, x) in board" :key="x" class="divide-x-4 grid grid-cols-3">
         <div
           v-for="(cell, y) in row"
           :key="y"
           @click="MakeMove(x, y)"
-          :class="`border-2 outline-double w-24 h-24 hover:bg-indigo-500/20 flex items-center justify-center text-5xl cursor-pointer ${
-            cell === 'X' ? 'text-red-800' : 'text-indigo-800'
+          :class="`shadow-xl w-24 h-24 hover:bg-indigo-500/20 flex items-center justify-center text-5xl cursor-pointer ${
+            cell === 'X' ? 'text-red-400' : 'text-indigo-400'
           }`"
         >
           {{ cell === "X" ? "X" : cell === "O" ? "O" : "" }}
         </div>
       </div>
     </div>
-
-    <div class="text-center">
-      <p class="text-3xl mb-4" v-if="!winner">
-        Pemain
-        <span
-          :class="`text-6xl ${player === 'X' ? 'text-red-800' : 'text-indigo-800'}`"
-          >{{ player }}</span
-        >
-        jalan
-      </p>
-
-      <p
-        v-if="winner"
-        class="text-6xl mb-4"
-        :class="{ 'text-red-800': winner === 'X', 'text-indigo-800': winner === 'O' }"
-      >
-        '{{ winner }}' <span class="text-gray-800 text-3xl">Menang!</span>
-      </p>
-
-      <button
-        @click="ResetGame"
-        class="px-4 py-2 bg-pink-500/20 rounded uppercase font-bold hover:bg-pink-600 duration-300"
-      >
-        Mulai lagi
-      </button>
-    </div>
-    <Watermark v-if="winner" />
   </section>
+
+  <div class="text-center">
+    <p class="text-3xl mb-4" v-if="!winner">
+      Pemain
+      <span :class="`text-6xl ${player === 'X' ? 'text-red-400' : 'text-indigo-400'}`">{{
+        player
+      }}</span>
+      jalan
+    </p>
+
+    <p
+      v-if="winner"
+      class="text-6xl mb-4"
+      :class="{ 'text-red-400': winner === 'X', 'text-indigo-400': winner === 'O' }"
+    >
+      {{ winner }} <span class="text-gray-200 text-3xl">Menang!</span>
+    </p>
+
+    <button
+      @click="ResetGame"
+      class="px-4 py-2 bg-pink-500/20 rounded uppercase font-bold hover:bg-pink-600 duration-300"
+    >
+      Mulai lagi
+    </button>
+  </div>
+  <Watermark v-if="winner" />
 </template>
