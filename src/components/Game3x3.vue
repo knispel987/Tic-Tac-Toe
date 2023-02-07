@@ -1,7 +1,6 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
+import { RouterLink } from "vue-router";
 import { ref, computed } from "vue";
-import Watermark from "./Watermark.vue";
 
 const player = ref("X");
 const board = ref([
@@ -29,8 +28,13 @@ const CalculateWinner = (board) => {
       return board[a];
     }
   }
-  return null;
+  return isDraw.value ? "Seri" : null;
 };
+
+const isDraw = computed(() => {
+  const flattenBoard = board.value.flat();
+  return winner.value === null && !flattenBoard.includes("");
+});
 
 const winner = computed(() => CalculateWinner(board.value.flat()));
 
@@ -55,33 +59,15 @@ const ResetGame = () => {
 </script>
 
 <template>
+  <div class="mb-4">
+    <RouterLink
+      class="px-4 py-2 bg-pink-500/20 rounded uppercase font-bold hover:bg-pink-600 duration-300"
+      to="/game4x4"
+      >Ganti Jadi 4x4
+    </RouterLink>
+  </div>
   <section>
-    <div class="mb-2">
-      <RouterLink
-        class="px-4 py-2 bg-pink-500/20 rounded uppercase font-bold hover:bg-pink-600 duration-300"
-        to="/game4x4"
-        >Ganti Jadi 4x4
-      </RouterLink>
-    </div>
-    <div>
-      <h1
-        v-if="!winner"
-        class="mb-8 text-3xl font-bold uppercase bg-gradient-to-tr from-slate-400 via-orange-400 to-blue-500 text-transparent bg-clip-text"
-      >
-        Permainan masih berjalan
-      </h1>
-      <h1
-        v-if="winner"
-        class="mb-8 text-3xl font-bold uppercase bg-gradient-to-tr from-slate-400 to-blue-500 text-transparent bg-clip-text"
-      >
-        Permainan Selesai yang Menang : <br />
-        <span
-          :class="`text-6xl ${winner === 'X' ? 'text-red-400' : 'text-indigo-400'}`"
-          >{{ winner }}</span
-        >
-      </h1>
-    </div>
-
+    <!-- The Game -->
     <div class="flex flex-col items-center mb-8 divide-y-4">
       <div v-for="(row, x) in board" :key="x" class="divide-x-4 grid grid-cols-3">
         <div
@@ -89,13 +75,14 @@ const ResetGame = () => {
           :key="y"
           @click="MakeMove(x, y)"
           :class="`shadow-xl w-24 h-24 hover:bg-indigo-500/20 flex items-center justify-center text-5xl cursor-pointer ${
-            cell === 'X' ? 'text-red-400' : 'text-indigo-400'
+            cell === 'X' ? 'text-red-400' : cell === 'O' ? 'text-indigo-400' : ''
           }`"
         >
           {{ cell === "X" ? "X" : cell === "O" ? "O" : "" }}
         </div>
       </div>
     </div>
+    <!-- End Game -->
   </section>
 
   <div class="text-center">
@@ -108,19 +95,22 @@ const ResetGame = () => {
     </p>
 
     <p
-      v-if="winner"
+      v-if="winner && winner !== 'Seri'"
       class="text-6xl mb-4"
       :class="{ 'text-red-400': winner === 'X', 'text-indigo-400': winner === 'O' }"
     >
       {{ winner }} <span class="text-gray-200 text-3xl">Menang!</span>
     </p>
+    <p class="text-gray-200 text-6xl font-semibold" v-if="winner === 'Seri'">
+      {{ winner }}!
+    </p>
 
     <button
+      v-if="winner"
       @click="ResetGame"
       class="px-4 py-2 bg-pink-500/20 rounded uppercase font-bold hover:bg-pink-600 duration-300"
     >
       Mulai lagi
     </button>
   </div>
-  <Watermark v-if="winner" />
 </template>
