@@ -83,7 +83,7 @@ const ResetGame = () => {
           v-for="(cell, y) in row"
           :key="y"
           @click="MakeMove(x, y)"
-          :class="` shadow-xl w-20 h-20 hover:bg-indigo-500/20 flex items-center justify-center text-4xl cursor-pointer ${
+          :class="` shadow-xl w-20 h-20 hover:bg-indigo-500/20 flex items-center justify-center text-5xl cursor-pointer ${
             cell === 'X' ? 'text-red-400' : 'text-blue-400'
           }`"
         >
