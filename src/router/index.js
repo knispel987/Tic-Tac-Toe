@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Game3x3 from "../components/Game3x3.vue";
 import Game4x4 from "../components/Game4x4.vue";
+import GameQuiz from "../components/GameQuiz.vue"
 
 const router = createRouter({
  history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,6 +15,11 @@ const router = createRouter({
    path: "/game4x4",
    name: "Game4x4",
    component: Game4x4,
+  },
+  {
+   path: "/gamequiz",
+   name: "GameQuiz",
+   component: GameQuiz,
   },
  ],
 });

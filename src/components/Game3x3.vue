@@ -65,6 +65,11 @@ const ResetGame = () => {
       to="/game4x4"
       >Ganti Jadi 4x4
     </RouterLink>
+    <RouterLink
+      class="px-4 py-2 bg-pink-500/20 rounded uppercase font-bold hover:bg-pink-600 duration-300"
+      to="/gamequiz"
+      >Game Quiz
+    </RouterLink>
   </div>
   <section>
     <!-- The Game -->
