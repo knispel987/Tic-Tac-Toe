@@ -17,7 +17,7 @@ const router = createRouter({
    component: Game4x4,
   },
   {
-   path: "/gamequiz",
+   path: "/game-quiz",
    name: "GameQuiz",
    component: GameQuiz,
   },
